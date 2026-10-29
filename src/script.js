@@ -14,19 +14,27 @@ fetch('db.json')
             list.appendChild(li);
         });
     })
-    .catch(err => {        
-        document.getElementById('db-status').innerText =
-            'Erro interno: ' + err.stack;
+    .catch(()=> {        
+        document.getElementById('db-status').textContent =
+            'Não foi possivel carregar as tarefas. ';
     });
 
 // Adiciona nova tarefa na tela
 function addTask() {
     const input = document.getElementById('new-task');
     const output = document.getElementById('output');
+    if(!task) {
+        return;
+    }
+    const li =
+        document.createElement('li');
+    li.textcontent = task;
+    
+    output.replaceChildren(li);
 
-    output.innerHTML = '<li>' + input.value + '</li>';
-
-    eval('console.log("Tarefa adicionada: ' + input.value + '")');
-
+    console.log('Tarefa adicionada:',task);
     input.value = '';
 }
+    
+
+    
